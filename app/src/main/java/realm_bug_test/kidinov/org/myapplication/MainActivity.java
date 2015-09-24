@@ -18,9 +18,11 @@ public class MainActivity extends AppCompatActivity {
         putObjectsOne();
         putObjectsTwo();
 
-        RealmResults realmResults = Realm.getInstance(MainActivity.this).where(Bar.class).findAllSorted("id");
+        RealmResults<Bar> realmResults = Realm.getInstance(MainActivity.this).where(Bar.class).findAllSorted("id");
 
-        Log.d("", String.format("result size = %d", realmResults.size()));
+        for (Bar bar : realmResults) {
+            Log.d("", String.format("result bar id = %s", bar.getId()));
+        }
 
     }
 
