@@ -14,9 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Realm realm = Realm.getInstance(this);
         for (int i = 0; i < 5; i++) {
-            saveAndCreateObject(realm);
+            saveAndCreateObject();
         }
 
         RealmResults realmResults = Realm.getInstance(MainActivity.this).where(Model.class).findAll();
@@ -25,10 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void saveAndCreateObject(final Realm realm) {
+    private void saveAndCreateObject() {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Realm realm = Realm.getInstance(MainActivity.this);
                 realm.beginTransaction();
                 Model m = new Model();
                 m.setId("id");
