@@ -44,10 +44,8 @@ public class MainActivity extends AppCompatActivity {
         Foo foo = realm.where(Foo.class).findFirst();
         realm.beginTransaction();
         Bar bar = foo.getBars().first();
-        if (bar != null) {
-            realm.copyToRealmOrUpdate(bar);
-            realm.copyToRealmOrUpdate(foo);
-        }
+        realm.copyToRealmOrUpdate(bar);
+        realm.copyToRealmOrUpdate(foo);
         realm.commitTransaction();
     }
 }
